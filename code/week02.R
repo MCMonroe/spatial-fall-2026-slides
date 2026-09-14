@@ -57,7 +57,7 @@ class(cps08[["ahe"]])   # numeric vector
 
 
 # ---- Slide 11. Subsetting dplyr-style ----------------------------------------
-select(cps08, age, ahe)
+new <- select(cps08, age, ahe)
 filter(cps08, age == 33)
 
 nrow(cps08); nrow(filter(cps08, age == 33))   # count both sides, always
@@ -93,6 +93,10 @@ cps08 %>% nrow(.)
 cps08 %>%
   group_by(female, bachelor) %>%
   summarize(mean_ahe = mean(ahe), .groups = "drop")
+#.groups=drop same as ungroup command
+
+## R will remember if you grouped data, once you get summary stat you are 
+## looking for be sure to ungroup
 
 # .groups controls what grouping is left ON THE RESULT. The default is
 # "drop_last", which peels one level and leaves the rest attached, silently.
@@ -108,6 +112,7 @@ nrow(g %>% ungroup() %>% summarize(n = n()))   # 1. what you meant.
 # ---- Slide 15. PREDICT. The join that eats your data -------------------------
 # How many rows come back? Write your answer down before you run it.
 lookup <- tibble(age = 25:30, cohort = "prime")
+print(lookup)
 
 nrow(cps08)                                    # before
 joined <- inner_join(cps08, lookup, by = "age")
@@ -122,8 +127,11 @@ saveRDS(cps08, "data/cps08.rds")
 cps08 <- readRDS("data/cps08.rds")
 unlink("data/cps08.rds")            # tidy up; this file is not tracked
 
+##RDS allows you to recall 
+
 # haven reads Stata, SPSS and SAS. readxl reads Excel. Both install with the
 # tidyverse. Real example rather than the placeholder name on the slide:
+## Tell haven to treat periods from Dat file as NA
 library(haven)
 head(read_dta(system.file("examples", "iris.dta", package = "haven")), 2)
 
@@ -348,6 +356,7 @@ as.numeric(a_to_b)                                  # what you give up
 # The payoff. Two lines build the instrument from a top-five paper.
 mainz <- cities_sf %>% filter(city_jjk == "MAINZ")
 st_coordinates(mainz)
+##Check to make sure same geo system
 
 cities_sf <- cities_sf %>%
   mutate(km_mainz = as.numeric(st_distance(., mainz)) / 1000)
