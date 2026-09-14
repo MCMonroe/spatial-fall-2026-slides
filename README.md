@@ -12,12 +12,15 @@ in class is here, and it is here **before** class. Pull it before every meeting.
 2. Install the packages.
 
    ```r
-   install.packages(c("tidyverse", "sf", "terra", "s2", "units", "AER"))
+   install.packages(c("tidyverse", "sf", "terra", "s2", "units", "AER",
+                      "sandwich", "lmtest"))
    ```
 
-   `AER` is new from Week 2 and is the only one that does not arrive as a
-   dependency of the others. `haven`, `readxl` and `units` come with the
-   tidyverse and `sf`.
+   `AER` arrived with Week 2, and `sandwich` and `lmtest` with Week 3, where
+   the regression discontinuity takes its standard errors from `coeftest()`
+   and `vcovHC()`. Those three are the ones that do not arrive as a dependency
+   of the others. `haven`, `readxl` and `units` come with the tidyverse and
+   `sf`.
 
 3. Clone this repository.
 
@@ -28,10 +31,10 @@ in class is here, and it is here **before** class. Pull it before every meeting.
 4. Open `ECON895.Rproj`. **Always open the project, not the bare script.** That
    sets the working directory to the repository root, which is why every path in
    this repo reads `data/africa_scale.shp` rather than a path from someone else's
-   machine. This is not a style preference; absolute paths are the single most
-   common reason one person's code will not run on another person's computer.
+   machine. Absolute paths are the single most common
+   reason one person's code will not run on another person's computer.
 
-5. Run `code/00_setup_test.R`. It prints fourteen checks and tells you how to fix
+5. Run `code/00_setup_test.R`. It prints seventeen checks and tells you how to fix
    any that fail. If a fix does not work, email me the console output.
 
 ## Before every class
@@ -49,6 +52,7 @@ That is the whole workflow. If you have edited a file and `pull` complains, see
 code/00_setup_test.R   check your machine can do what the course needs
 code/week01.R          the code from Week 1, in slide order
 code/week02.R          the code from Week 2, in slide order
+code/week03.R          the code from Week 3, in slide order
 data/                  everything the scripts read. See DATA_SOURCES.md
 slides/                the lecture PDFs
 ```

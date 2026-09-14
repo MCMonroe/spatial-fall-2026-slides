@@ -2,8 +2,9 @@
 # econ895_setup_test.R
 # ECON 895 Spatial Techniques in Empirical Economics -- Fall 2026
 #
-# Run this before Week 2. It checks that your machine can do everything the
-# course needs, and it tells you plainly what to fix if it cannot.
+# Run this before the term starts, and again whenever a week adds a package.
+# It checks that your machine can do everything the course needs, and it tells
+# you plainly what to fix if it cannot.
 #
 # HOW TO RUN
 #   1. Open RStudio.
@@ -11,8 +12,8 @@
 #   3. Click "Source" (top right of the editor pane), or press Cmd/Ctrl+Shift+S.
 #   4. Read the summary at the bottom of the console.
 #
-# If anything reports FAIL, email njohnsoL@gmu.edu BEFORE Sunday Aug 30. Do not wait
-# until Monday at 7 pm.
+# If anything reports FAIL, email njohnsoL@gmu.edu before the next meeting. Do
+# not wait until Monday at 7 pm.
 #
 # Nothing here touches your files or installs anything. It only reads and
 # reports.
@@ -75,10 +76,12 @@ check(
 
 section("Required packages")
 
-# AER is here for the Week 2 instrumental-variables slides. Unlike units,
-# haven and readxl, which arrive as dependencies of sf and the tidyverse, it
-# needs its own install.
-required <- c("tidyverse", "sf", "terra", "AER")
+# AER is here for the Week 2 instrumental-variables slides, and sandwich and
+# lmtest for the Week 3 regression discontinuity, where the standard errors
+# come from coeftest() and vcovHC(). Unlike units, haven and readxl, which
+# arrive as dependencies of sf and the tidyverse, these three need their own
+# install.
+required <- c("tidyverse", "sf", "terra", "AER", "sandwich", "lmtest")
 
 for (pkg in required) {
   check(
